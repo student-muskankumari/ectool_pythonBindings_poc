@@ -1,15 +1,15 @@
 #include <Python.h>
 
-/* Simulated fan state */
+//lets assume fan state 
 static int current_speed = 35;
 
-/* Return current fan level */
+// current fan level
 static PyObject* read_fan_level(PyObject* self, PyObject* args)
 {
     return PyLong_FromLong(current_speed);
 }
 
-/* Update fan level */
+// Updating fan level
 static PyObject* update_fan_level(PyObject* self, PyObject* args)
 {
     int level;
@@ -28,14 +28,14 @@ static PyObject* update_fan_level(PyObject* self, PyObject* args)
     Py_RETURN_NONE;
 }
 
-/* Function table */
+// Function table
 static PyMethodDef CoolctlMethods[] = {
     {"read_fan_level", read_fan_level, METH_VARARGS, "Read current fan level"},
     {"update_fan_level", update_fan_level, METH_VARARGS, "Update fan level"},
     {NULL, NULL, 0, NULL}
 };
 
-/* Module definition */
+//Defining Module
 static struct PyModuleDef coolctlmodule = {
     PyModuleDef_HEAD_INIT,
     "coolctl",
@@ -44,7 +44,7 @@ static struct PyModuleDef coolctlmodule = {
     CoolctlMethods
 };
 
-/* Module initialization */
+//initialization
 PyMODINIT_FUNC PyInit_coolctl(void)
 {
     return PyModule_Create(&coolctlmodule);
